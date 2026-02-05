@@ -414,26 +414,6 @@
 
       .tooltip {
         /* display: none;
-        position: absolute;
-        bottom: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #1f2937;
-        color: white;
-        padding: 12px 16px;
-        border-radius: 12px;
-        font-size: 13px;
-        z-index: 100;
-        min-width: 200px;
-        margin-bottom: 8px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        pointer-events: none;
-        bottom: calc(100% + 10px);
-        white-space: normal;
-        opacity: 0;
-        transition: opacity 0.3s;
-        max-width: 300px; */
-        display: none;
         position: fixed;
         left: 50%;
         top: 50%;
@@ -450,7 +430,28 @@
         white-space: normal;
         opacity: 0;
         transition: opacity 0.3s;
-        max-width: 300px;
+        max-width: 300px; */
+        display: none;
+        position: fixed;
+        background: #1f2937;
+        color: white;
+        padding: 12px 16px;
+        border-radius: 12px;
+        font-size: 13px;
+        z-index: 1000;
+        min-width: 200px;
+        max-width: calc(100vw - 40px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        pointer-events: none;
+        white-space: normal;
+        opacity: 0;
+        transition: opacity 0.3s;
+        left: 20px;
+        right: 20px;
+        width: fit-content;
+        margin: 0 auto;
+        top: 50%;
+        transform: translateY(-50%);
       }
 
       .day-cell:hover .tooltip {
