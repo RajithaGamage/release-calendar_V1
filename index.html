@@ -706,6 +706,13 @@
         color: #6b7280;
       }
 
+      .release-description {
+        font-size: 13px;
+        color: #64748b;
+        margin-top: 4px;
+        font-style: italic;
+      }
+
       .days-until {
         font-size: 16px;
         font-weight: 700;
@@ -925,15 +932,26 @@
           );
 
           // Parse releases (skip header row)
-          projects = releasesJson.table.rows
-            .slice(1)
-            .map((row) => {
-              const name = row.c[0]?.v || "";
-              const dateStr = row.c[1]?.v || "";
-              const critical =
-                row.c[2]?.v?.toLowerCase() === "yes" ||
-                row.c[2]?.v?.toLowerCase() === "true";
-              const version = row.c[3]?.v || "";
+          // projects = releasesJson.table.rows
+          //   .slice(1)
+          //   .map((row) => {
+          //     const name = row.c[0]?.v || "";
+          //     const dateStr = row.c[1]?.v || "";
+          //     const critical =
+          //       row.c[2]?.v?.toLowerCase() === "yes" ||
+          //       row.c[2]?.v?.toLowerCase() === "true";
+          //     const version = row.c[3]?.v || "";
+
+              projects = releasesJson.table.rows
+              .slice(1)
+              .map((row) => {
+                const name = row.c[0]?.v || "";
+                const dateStr = row.c[1]?.v || "";
+                const critical =
+                  row.c[2]?.v?.toLowerCase() === "yes" ||
+                  row.c[2]?.v?.toLowerCase() === "true";
+                const version = row.c[3]?.v || "";
+                const description = row.c[4]?.v || "";
 
               // Parse date (Google Sheets date format)
               let date = "";
@@ -961,7 +979,7 @@
                 }
               }
 
-              return { name, date, critical, version };
+              return { name, date, critical, version, description  };
             })
             .filter((p) => p.name && p.date);
 
@@ -1346,11 +1364,26 @@
           const info = document.createElement("div");
           info.className = "release-info";
 
+          // const name = document.createElement("div");
+          // name.className = "release-name";
+          // name.textContent = `${release.name} ${release.version}`;
+          // info.appendChild(name);
+
+          // const date = document.createElement("div");
+          // date.className = "release-date";
+
           const name = document.createElement("div");
           name.className = "release-name";
           name.textContent = `${release.name} ${release.version}`;
           info.appendChild(name);
-
+          
+          if (release.description) {
+            const desc = document.createElement("div");
+            desc.className = "release-description";
+            desc.textContent = release.description;
+            info.appendChild(desc);
+          }
+          
           const date = document.createElement("div");
           date.className = "release-date";
           date.textContent = new Date(release.date).toLocaleDateString(
