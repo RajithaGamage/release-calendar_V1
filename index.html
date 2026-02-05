@@ -440,18 +440,17 @@
         font-size: 13px;
         z-index: 1000;
         min-width: 200px;
-        max-width: calc(100vw - 40px);
+        max-width: 300px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         pointer-events: none;
         white-space: normal;
         opacity: 0;
         transition: opacity 0.3s;
-        left: 20px;
-        right: 20px;
-        width: fit-content;
-        margin: 0 auto;
+        left: 50%;
         top: 50%;
-        transform: translateY(-50%);
+        transform: translate(-50%, -50%);
+        max-width: calc(100vw - 40px);
+        margin: 0 20px;
       }
 
       .day-cell:hover .tooltip {
